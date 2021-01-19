@@ -1,5 +1,6 @@
 package com.example.geticapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
@@ -15,33 +16,55 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val homeFragment = HomeFragment()
-    private val addFragment = AddFragment()
-    private val notificationFragment = NotificationFragment()
-    private val profileFragment = ProfileFragment()
-    private val searchFragment = SearchFragment()
     private var doubleBackToExitPressedOnce = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        replaceFragment(homeFragment)
-        nav_view.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> replaceFragment(homeFragment)
-                R.id.nav_add_post -> replaceFragment(addFragment)
-                R.id.nav_notifications -> replaceFragment(notificationFragment)
-                R.id.nav_profile -> replaceFragment(profileFragment)
-                R.id.nav_search -> replaceFragment(searchFragment)
-            }
-            true
+private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    when (item.itemId) {
+        R.id.nav_home -> {
+            moveToFragment(HomeFragment())
+            return@OnNavigationItemSelectedListener true
+        }
+        R.id.nav_search -> {
+            moveToFragment(SearchFragment())
+            return@OnNavigationItemSelectedListener true
+        }
+        R.id.nav_add_post -> {
+            item.isChecked = false
+            startActivity(Intent(this@MainActivity, AddPostActivity::class.java))
+            return@OnNavigationItemSelectedListener true
+        }
+        R.id.nav_notifications -> {
+            moveToFragment(NotificationFragment())
+            return@OnNavigationItemSelectedListener true
+        }
+        R.id.nav_profile -> {
+            moveToFragment(ProfileFragment())
+            return@OnNavigationItemSelectedListener true
         }
     }
-    private fun replaceFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
-    }
+
+    false
+}
+
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+    navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+
+    moveToFragment(HomeFragment())
+}
+
+
+private fun moveToFragment(fragment: Fragment)
+{
+    val fragmentTrans = supportFragmentManager.beginTransaction()
+    fragmentTrans.replace(R.id.fragment_container, fragment)
+    fragmentTrans.commit()
+}
+
     @Override
     override fun onBackPressed(){
         if (doubleBackToExitPressedOnce){
@@ -50,7 +73,8 @@ class MainActivity : AppCompatActivity() {
         }
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
-
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
+
 }
+

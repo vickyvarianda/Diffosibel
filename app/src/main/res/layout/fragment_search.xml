@@ -7,9 +7,9 @@
     tools:context=".SearchFragment">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/app_bar_layout_search"
         android:background="@android:color/white"
         >
 
@@ -35,11 +35,14 @@
                     android:src="@drawable/search" />
 
                 <EditText
+                    android:id="@+id/search_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="15dp"
                     android:maxLines="1"
+                    android:textFontWeight="1"
+                    android:inputType="text"
                     android:hint="Search. . ."
                     android:layout_toEndOf="@+id/search_fragment_icon"
                     />
@@ -54,10 +57,10 @@
         android:id="@+id/recycler_view_Search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_below="@+id/app_bar_layout_search">
 
     </androidx.recyclerview.widget.RecyclerView>
-    <!-- TODO: Update blank fragment layout -->
 
 
 </RelativeLayout>

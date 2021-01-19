@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "11047849203",
+    "project_id": "getic-app",
+    "storage_bucket": "getic-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11047849203:android:13765b778fa7b392bf7b86",
+        "android_client_info": {
+          "package_name": "com.example.geticapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11047849203-16olso3tun0svvjrqcrtnjorbdsd6hth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlhHxnkXReW51ZetfLG5M7P39vlLwn-0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11047849203-16olso3tun0svvjrqcrtnjorbdsd6hth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
